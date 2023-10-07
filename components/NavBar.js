@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import PropTypes from 'prop-types';
+// import { userRouter } from 'next/router';
 import Link from 'next/link';
 import {
   Navbar, Container, Nav,
@@ -23,6 +24,15 @@ export default function NavBar() {
             </Link>
             <Link passHref href="/book/new">
               <Nav.Link>Create Book</Nav.Link>
+            </Link>
+            <Link passHref href="/">
+              <Nav.Link>Authors</Nav.Link>
+            </Link>
+            <Link passHref href="/authors/new">
+              <Nav.Link>Create Author</Nav.Link>
+            </Link>
+            <Link passHref href="/">
+              <Nav.Link>Profile</Nav.Link>
             </Link>
           </Nav>
         </Navbar.Collapse>
