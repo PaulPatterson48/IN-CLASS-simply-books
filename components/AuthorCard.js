@@ -7,15 +7,16 @@ import { deleteSingleAuthor } from '../api/authorData';
 
 function AuthorCard({ obj, onUpdate }) {
   const deleteThisAuthor = () => {
-    if (window.confirm(`Delete ${obj.firebaseKey}?`)) {
+    if (window.confirm(`Delete ${obj.first_name}?`)) {
       deleteSingleAuthor(obj.firebaseKey).then(() => onUpdate());
     }
   };
 
   return (
     <Card style={{ width: '18rem', margi: '10px' }}>
-      <Card.Img variant="top" src={obj.image} alt={obj.firebaseKey} style={{ height: '400px' }} />
+      <Card.Img variant="top" src={obj.image} alt={[obj.first_name, obj.last_name]} style={{ height: '400px' }} />
       <Card.Body>
+        <Card.Title>{obj.first_name} {obj.last_name}</Card.Title>
         <Link href={`/author/edit/${obj.first_name} ${obj.last_name} ${obj.favorite}`} passHref>
           <Button variant="info">EDIT</Button>
         </Link>
