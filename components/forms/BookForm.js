@@ -23,6 +23,11 @@ function BookForm({ obj }) {
   const { user } = useAuth();
 
   useEffect(() => {
+    if (obj.firebaseKey) setFormInput(obj);
+    getAuthors(user.uid).then(setAuthors);
+  }, [obj, user]); // needed to mount the obj and the user
+
+  useEffect(() => {
     getAuthors(user.uid).then(setAuthors);
 
     if (obj.firebaseKey) setFormInput(obj);
@@ -45,7 +50,7 @@ function BookForm({ obj }) {
       createBook(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
         updateBook(patchPayload).then(() => {
-          router.push('/');
+          router.push('/books');
         });
       });
     }
@@ -98,7 +103,7 @@ function BookForm({ obj }) {
           name="author_id"
           onChange={handleChange}
           className="mb-3"
-          value={obj.author_id} // FIXME: modify code to remove error
+          value={obj.author_id} // FIXME: add the proptype at the bottom
           required
         >
           <option value="">Select an Author</option>
@@ -145,7 +150,7 @@ function BookForm({ obj }) {
       />
 
       {/* SUBMIT BUTTON  */}
-      <Button type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Book</Button>
+      <Button type="submit">{obj.firebaseKey ? 'Update Book' : 'Create Book'} Book</Button>
     </Form>
   );
 }
