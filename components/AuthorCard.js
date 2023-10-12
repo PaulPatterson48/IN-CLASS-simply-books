@@ -15,15 +15,16 @@ function AuthorCard({ obj, onUpdate }) {
   return (
     <Card style={{ width: '18rem', margi: '10px' }}>
       <Card.Img variant="top" src={obj.image} alt={[obj.first_name, obj.last_name]} style={{ height: '400px' }} />
-      <h6>{obj.email} </h6>
       <Card.Body>
         <Card.Title>{obj.first_name} {obj.last_name}</Card.Title>
+        <span>{obj.favorite ? '❤️' : ''}</span>
+        <Link href={`/author/${obj.firebaseKey}`} passHref>
+          <Button variant="primary" className="m-2">View</Button>
+        </Link>
         <Link href={`/author/edit/${obj.first_name} ${obj.last_name} ${obj.favorite}`} passHref>
           <Button variant="info">EDIT</Button>
         </Link>
-        <Link href={`/author/edit/${obj.first_name} ${obj.last_name}`} passHref>
-          <Button variant="danger" onClick={deleteThisAuthor} classNam="m-2">DELETE</Button>
-        </Link>
+        <Button variant="danger" onClick={deleteThisAuthor} classNam="m-2">DELETE</Button>
       </Card.Body>
     </Card>
   );
