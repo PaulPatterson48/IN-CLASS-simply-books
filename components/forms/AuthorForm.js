@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import Form, { FloatingLabel, Button } from 'react-bootstrap';
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import Form from 'react-bootstrap/Form';
+import { Button } from 'react-bootstrap';
 import { useAuth } from '../../utils/context/authContext';
 import { createAuthor, updateAuthor } from '../../api/authorData';
 
 const initialState = {
   email: '',
-  favorite: '',
+  favorite: false,
   first_name: '',
   last_name: '',
   uid: '',
 };
 
 function AuthorForm({ obj }) {
-  const [formInput, setFormInput] = useState();
+  const [formInput, setFormInput] = useState(initialState);
   const router = useRouter();
   const { user } = useAuth();
 
@@ -33,8 +35,7 @@ function AuthorForm({ obj }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (obj.firebaseKey) {
-      updateAuthor(formInput).then(() => router.push(`/author/${obj
-        . firebaseKey}`));
+      updateAuthor(formInput).then(() => router.push('/authors'));
     } else {
       const payload = { ...formInput, uid: user.uid };
       createAuthor(payload).then(({ name }) => {
@@ -91,6 +92,7 @@ function AuthorForm({ obj }) {
           placeholder="First Name"
           name="first_name"
           value={formInput.first_name}
+          onChange={handleChange}
           required
         />
       </FloatingLabel>
@@ -105,6 +107,7 @@ function AuthorForm({ obj }) {
           placeholder="Last Name"
           name="last_name"
           value={formInput.last_name}
+          onChange={handleChange}
           required
         />
       </FloatingLabel>

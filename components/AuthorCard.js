@@ -15,6 +15,7 @@ function AuthorCard({ obj, onUpdate }) {
   return (
     <Card style={{ width: '18rem', margi: '10px' }}>
       <Card.Img variant="top" src={obj.image} alt={[obj.first_name, obj.last_name]} style={{ height: '400px' }} />
+      <h6>{obj.email} </h6>
       <Card.Body>
         <Card.Title>{obj.first_name} {obj.last_name}</Card.Title>
         <Link href={`/author/edit/${obj.first_name} ${obj.last_name} ${obj.favorite}`} passHref>
