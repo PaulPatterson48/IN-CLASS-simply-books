@@ -35,7 +35,7 @@ function AuthorForm({ obj }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (obj.firebaseKey) {
-      updateAuthor(formInput).then(() => router.push('/authors'));
+      updateAuthor(formInput).then(() => router.push(`/author/${obj.firebaseKey}`));
     } else {
       const payload = { ...formInput, uid: user.uid };
       createAuthor(payload).then(({ name }) => {
@@ -46,12 +46,16 @@ function AuthorForm({ obj }) {
       });
     }
   };
-
+  console.warn(obj);
   return (
     <Form onSubmit={handleSubmit}>
       <h2 className="text-white mt-5">{obj.firebaseKey ? 'Update' : 'Create'} Author</h2>
 
-      <FloatingLabel controlId="floatingInput1" label="email" className="mb-3">
+      <FloatingLabel
+        controlId="floatingInput1"
+        label="email"
+        className="mb-3"
+      >
         <Form.Control
           type="text"
           placeholder="Enter email address"
@@ -111,8 +115,7 @@ function AuthorForm({ obj }) {
           required
         />
       </FloatingLabel>
-
-      <Button type="submit">{obj.firebaseKey ? 'Update Author' : 'Create Author'} Author</Button>
+      <Button type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Author</Button>
     </Form>
   );
 }

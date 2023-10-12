@@ -8,6 +8,7 @@ export default function EditAuthor() {
   const router = useRouter();
   // TODO: grab the firebasekey
   const { firebaseKey } = router.query;
+  console.warn(router);
 
   // TODO: make a call to the API to get the book data
   useEffect(() => {
