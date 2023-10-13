@@ -24,7 +24,7 @@ function AuthorCard({ obj, onUpdate }) {
         <Link href={`/author/edit/${obj.firebaseKey}`} passHref>
           <Button variant="info">EDIT</Button>
         </Link>
-        <Button variant="danger" onClick={deleteThisAuthor} classNam="m-2">DELETE</Button>
+        <Button variant="danger" onClick={deleteThisAuthor} className="m-2">DELETE</Button>
       </Card.Body>
     </Card>
   );

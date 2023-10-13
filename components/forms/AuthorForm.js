@@ -12,6 +12,7 @@ const initialState = {
   favorite: false,
   first_name: '',
   last_name: '',
+  image: '',
   uid: '',
 };
 
@@ -46,7 +47,7 @@ function AuthorForm({ obj }) {
       });
     }
   };
-  console.warn(obj);
+
   return (
     <Form onSubmit={handleSubmit}>
       <h2 className="text-white mt-5">{obj.firebaseKey ? 'Update' : 'Create'} Author</h2>
@@ -115,6 +116,19 @@ function AuthorForm({ obj }) {
           required
         />
       </FloatingLabel>
+      <FloatingLabel
+        controlId="floatingInput5"
+        label="image"
+        className="mb-3"
+      >
+        <Form.Control
+          type="url"
+          placeholder="image"
+          name="image"
+          value={formInput.image}
+          onChange={handleChange}
+        />
+      </FloatingLabel>
       <Button type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Author</Button>
     </Form>
   );
@@ -127,6 +141,7 @@ AuthorForm.propTypes = {
     firebaseKey: PropTypes.string,
     first_name: PropTypes.string,
     last_name: PropTypes.string,
+    image: PropTypes.string,
     uid: PropTypes.string,
   }),
 };

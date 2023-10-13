@@ -20,7 +20,6 @@ const viewAuthorDetails = (authorFirebaseKey) => new Promise((resolve, reject) =
 
 const deleteAuthorBooks = (firebaseKey) => new Promise((resolve, reject) => {
   getAuthorBooks(firebaseKey).then((authorBooksArray) => {
-    console.warn(authorBooksArray, 'Author Books');
     const deleteBookPromises = authorBooksArray.map((book) => deleteBook(book.firebaseKey));
 
     Promise.all(deleteBookPromises).then(() => {
