@@ -21,7 +21,7 @@ function AuthorCard({ obj, onUpdate }) {
         <Link href={`/author/${obj.firebaseKey}`} passHref>
           <Button variant="primary" className="m-2">View</Button>
         </Link>
-        <Link href={`/author/edit/${obj.first_name} ${obj.last_name} ${obj.favorite}`} passHref>
+        <Link href={`/author/edit/${obj.firebaseKey}`} passHref>
           <Button variant="info">EDIT</Button>
         </Link>
         <Button variant="danger" onClick={deleteThisAuthor} classNam="m-2">DELETE</Button>
