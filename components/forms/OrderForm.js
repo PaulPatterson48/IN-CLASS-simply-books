@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Form } from 'react-bootstrap';
 import { useRouter } from 'next/router';
+import moment from 'moment/moment';
 import { useAuth } from '../../utils/context/authContext';
 import { createOrder, updateOrder } from '../../api/orderData';
 
@@ -9,7 +10,6 @@ const initialState = {
   customer_name: '',
   orderType: '',
   email: '',
-  dateCreated: Date.now(),
 };
 
 export default function OrderForm({ orderObj }) {
@@ -28,10 +28,10 @@ export default function OrderForm({ orderObj }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (orderObj.firebaseKey) {
-      updateOrder(formInput).then(() => router.push(`/
-  order/${orderObj.firebaseKey}`));
+      updateOrder(formInput).then(() => router.push(`/order/${orderObj.firebaseKey}`));
     } else {
-      const payload = { ...formInput, uid: user.uid };
+      const datetimeNow = moment().format('MMMM Do YYYY, h:mm:ss a');
+      const payload = { ...formInput, uid: user.uid, dateCreate: datetimeNow };
       createOrder(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
         updateOrder(patchPayload).then(() => {
