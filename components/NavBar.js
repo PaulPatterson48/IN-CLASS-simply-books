@@ -5,8 +5,9 @@ import PropTypes from 'prop-types';
 // import { userRouter } from 'next/router';
 import Link from 'next/link';
 import {
-  Navbar, Container, Nav,
+  Navbar, Container, Nav, Button,
 } from 'react-bootstrap';
+import { signOut } from '../utils/auth';
 
 export default function NavBar() {
   return (
@@ -31,9 +32,13 @@ export default function NavBar() {
             <Link passHref href="/author/new">
               <Nav.Link>Create Author</Nav.Link>
             </Link>
+            <Link passHref href="/orders">
+              <Nav.Link>Orders</Nav.Link>
+            </Link>
             <Link passHref href="/profile">
               <Nav.Link>Profile</Nav.Link>
             </Link>
+            <Button type="button" className="btn-danger" onClick={signOut}>Sign Out</Button>
           </Nav>
         </Navbar.Collapse>
       </Container>
