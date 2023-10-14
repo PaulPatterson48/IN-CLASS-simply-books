@@ -8,14 +8,15 @@ import OrderCard from '../components/OrderCard';
 
 function ShowOrders() {
   // TODO: Set a state for books
-  const [orders, setOrder] = useState([]);
+  const [orders, setOrders] = useState([]);
 
   // TODO: Get user ID using useAuth Hook
   const { user } = useAuth();
+  console.warn(orders);
 
   // TODO: create a function that makes the API call to get all the books
   const getAllTheOrders = () => {
-    getOrders(user.uid).then(setOrder);
+    getOrders(user.uid).then(setOrders);
   };
 
   // TODO: make the call to the API to get all the books on component render
